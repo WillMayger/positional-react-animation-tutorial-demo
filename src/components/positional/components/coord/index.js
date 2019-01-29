@@ -20,17 +20,19 @@ export default function Coord({
     const viewPortWidth = getViewportWidth();
 
     const mouseMove = (e) => {
-      const midpointX = viewPortWidth / 2;
-      const midpointY = viewPortHeight / 2;
-
-      const eventX = e.pageX;
-      const eventY = e.pageY - parentRef.current.offsetTop;
-
-      const relativeX = (eventX - midpointX) / speed;
-      const relativeY = (eventY - midpointY) / speed;
-
-      setTop(relativeY);
-      setLeft(relativeX);
+      requestAnimationFrame(() => {
+        const midpointX = viewPortWidth / 2;
+        const midpointY = viewPortHeight / 2;
+        
+        const eventX = e.pageX;
+        const eventY = e.pageY - parentRef.current.offsetTop;
+        
+        const relativeX = (eventX - midpointX) / speed;
+        const relativeY = (eventY - midpointY) / speed;
+        
+        setTop(relativeY);
+        setLeft(relativeX);
+      });
     };
 
     useEffect(() => {
